@@ -1,0 +1,85 @@
+m255
+K3
+13
+cModel Technology
+Z0 dC:\Users\juane\Desktop\Lab2 Reference Design 2025\CS701\test
+Ptdmamintypes
+Z1 DPx4 ieee 14 std_logic_1164 0 22 5=aWaoGZSMWIcH0i^f`XF1
+Z2 DPx3 std 6 textio 0 22 5>J:;AW>W0[[dW0I6EN1Q0
+Z3 DPx4 ieee 11 numeric_std 0 22 O3PF8EB`?j9=z7KT`fn941
+Z4 w1640991600
+Z5 dC:\Users\juane\Desktop\Lab2 Reference Design 2025\CS701\test
+Z6 8C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/src/TdmaMin/TdmaMinTypes.vhd
+Z7 FC:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/src/TdmaMin/TdmaMinTypes.vhd
+l0
+L5
+VV@oKhRG0DScNUkH3^aUSf3
+Z8 OV;C;10.1d;51
+32
+b1
+Z9 !s108 1746746130.031000
+Z10 !s90 -reportprogress|300|-work|work|C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/src/TdmaMin/TdmaMinTypes.vhd|
+Z11 !s107 C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/src/TdmaMin/TdmaMinTypes.vhd|
+Z12 o-work work -O0
+Z13 tExplicit 1
+!s100 2Zm`MZo]LBFH7`SNm^XDI3
+!i10b 1
+Bbody
+Z14 DPx4 work 12 tdmamintypes 0 22 V@oKhRG0DScNUkH3^aUSf3
+R1
+R2
+R3
+l0
+L23
+VzflM>zL61HSXKF4dm@92Z1
+R8
+32
+R9
+R10
+R11
+R12
+R13
+nbody
+!s100 CWM=:jUlSL;[_m1bWncLn2
+!i10b 1
+Etestaudiocontrol
+R4
+R1
+R2
+R3
+R5
+8C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/test/Audio/TestAudioControl.vhd
+FC:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/test/Audio/TestAudioControl.vhd
+l0
+L5
+VGV3^Nak3f:?NYmg4n>YLG0
+R8
+32
+R12
+R13
+!s100 PR[iNKYUf]K9YAE]CJJ_;3
+!i10b 1
+!s108 1746746100.997000
+!s90 -reportprogress|300|-work|work|C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/test/Audio/TestAudioControl.vhd|
+!s107 C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/test/Audio/TestAudioControl.vhd|
+Etesttdmamininterface
+R4
+R14
+R1
+R2
+R3
+R5
+8C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/test/TdmaMin/TestTdmaMinInterface.vhd
+FC:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/test/TdmaMin/TestTdmaMinInterface.vhd
+l0
+L8
+VAB1EFIlWHJH0U84Ai1o^m2
+!s100 UDCjadBLJ?WCI1i;k3@P40
+R8
+32
+!i10b 1
+!s108 1746746346.302000
+!s90 -reportprogress|300|-work|work|C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/test/TdmaMin/TestTdmaMinInterface.vhd|
+!s107 C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/test/TdmaMin/TestTdmaMinInterface.vhd|
+R12
+R13

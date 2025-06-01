@@ -1,0 +1,872 @@
+m255
+K3
+13
+cModel Technology
+Z0 dC:\Users\juane\Desktop\Lab2 Reference Design 2025\CS701
+Eaudio
+Z1 w1640991600
+Z2 DPx4 work 12 tdmamintypes 0 22 V@oKhRG0DScNUkH3^aUSf3
+Z3 DPx4 ieee 14 std_logic_1164 0 22 5=aWaoGZSMWIcH0i^f`XF1
+Z4 DPx3 std 6 textio 0 22 5>J:;AW>W0[[dW0I6EN1Q0
+Z5 DPx4 ieee 11 numeric_std 0 22 O3PF8EB`?j9=z7KT`fn941
+Z6 dC:\Users\juane\Desktop\Lab2 Reference Design 2025\CS701
+Z7 8C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/src/Audio/Audio.vhd
+Z8 FC:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/src/Audio/Audio.vhd
+l0
+L10
+VDGeh>a[4_hDekmaUOL_990
+Z9 OV;C;10.1d;51
+32
+Z10 !s108 1746747030.976000
+Z11 !s90 -reportprogress|300|-work|work|C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/src/Audio/Audio.vhd|
+Z12 !s107 C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/src/Audio/Audio.vhd|
+Z13 o-work work -O0
+Z14 tExplicit 1
+!s100 8YcjWRTT^i9bSaWKO=KiC0
+!i10b 1
+Artl
+Z15 DEx4 work 8 audioout 0 22 Vm;bh2QezS0ol?:Z4oP`e2
+Z16 DEx4 work 7 audioin 0 22 912In:iX[kaV_B[mAzTB03
+Z17 DEx4 work 10 audiotones 0 22 _:IiKI>Jhd0HHT>Z^a6A13
+Z18 DEx4 work 12 audiocontrol 0 22 Gj6iBhG4lI2nW]9UV8KLL2
+DEx2 ip 10 audioclock 0 22 446^Oa[[WgVN9YYbIo3E[0
+R2
+R3
+R4
+R5
+DEx4 work 5 audio 0 22 DGeh>a[4_hDekmaUOL_990
+l36
+L35
+Vf?5o`XSVVEfhoOk=@[Q6h2
+R9
+32
+R10
+R11
+R12
+R13
+R14
+!s100 H1Rzi_fdz5LdmXZYCV8AQ3
+!i10b 1
+Eaudiocontrol
+R1
+R3
+R4
+R5
+R6
+Z19 8C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/src/Audio/AudioControl.vhd
+Z20 FC:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/src/Audio/AudioControl.vhd
+l0
+L5
+VGj6iBhG4lI2nW]9UV8KLL2
+R9
+32
+Z21 !s108 1746747030.295000
+Z22 !s90 -reportprogress|300|-work|work|C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/src/Audio/AudioControl.vhd|
+Z23 !s107 C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/src/Audio/AudioControl.vhd|
+R13
+R14
+!s100 6>hH8GW9GC=HFM4mbd4^O0
+!i10b 1
+Artl
+R3
+R4
+R5
+R18
+l46
+L13
+Vc0C=Uhdim;[lPHABk`VMA2
+R9
+32
+R21
+R22
+R23
+R13
+R14
+!s100 2I=C[fC63`W1PJ1;o]74B3
+!i10b 1
+Eaudioin
+R1
+R3
+R4
+R5
+R6
+Z24 8C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/src/Audio/AudioIn.vhd
+Z25 FC:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/src/Audio/AudioIn.vhd
+l0
+L7
+V912In:iX[kaV_B[mAzTB03
+R9
+32
+Z26 !s108 1746747029.618000
+Z27 !s90 -reportprogress|300|-work|work|C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/src/Audio/AudioIn.vhd|
+Z28 !s107 C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/src/Audio/AudioIn.vhd|
+R13
+R14
+!s100 fAlF`7IEgIJ=GgaBn`WKF2
+!i10b 1
+Artl
+Z29 DEx2 ip 9 audiofifo 0 22 IWfCKcW9CabkCE?TQjVC51
+R3
+R4
+R5
+R16
+l25
+L20
+V:>fzGH[NSBWzgVA=:BP051
+R9
+32
+R26
+R27
+R28
+R13
+R14
+!s100 7abi?Z=oIBK;cm^cbi4F@1
+!i10b 1
+Eaudioout
+R1
+R3
+R4
+R5
+R6
+Z30 8C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/src/Audio/AudioOut.vhd
+Z31 FC:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/src/Audio/AudioOut.vhd
+l0
+L7
+VVm;bh2QezS0ol?:Z4oP`e2
+R9
+32
+Z32 !s108 1746747022.852000
+Z33 !s90 -reportprogress|300|-work|work|C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/src/Audio/AudioOut.vhd|
+Z34 !s107 C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/src/Audio/AudioOut.vhd|
+R13
+R14
+!s100 4k;c6YA4bMI3]CJ`KL?>T1
+!i10b 1
+Artl
+R29
+R3
+R4
+R5
+R15
+l30
+L20
+V^:10RZN<MHK6AM<im281c2
+R9
+32
+R32
+R33
+R34
+R13
+R14
+!s100 YA>C6XbkJj8<Hg0FiK93:3
+!i10b 1
+Eaudiotones
+R1
+R3
+R4
+R5
+R6
+Z35 8C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/src/Audio/AudioTones.vhd
+Z36 FC:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/src/Audio/AudioTones.vhd
+l0
+L7
+V_:IiKI>Jhd0HHT>Z^a6A13
+R9
+32
+Z37 !s108 1746747028.866000
+Z38 !s90 -reportprogress|300|-work|work|C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/src/Audio/AudioTones.vhd|
+Z39 !s107 C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/src/Audio/AudioTones.vhd|
+R13
+R14
+!s100 B8e>1Zg75Qz4?ES3@GjVa3
+!i10b 1
+Artl
+Z40 DPx9 altera_mf 20 altera_mf_components 0 22 No]@D`cShSLI4UOb8Ijo62
+Z41 DEx2 ip 8 audiorom 0 22 gBcd5hCdg@jSM9oG42NGW1
+R29
+R3
+R4
+R5
+R17
+l28
+L20
+V?6Wk]<<4eR>T=e>Wd085b2
+R9
+32
+R37
+R38
+R39
+R13
+R14
+!s100 S8N?60HBYL^ShK_LnXf<d1
+!i10b 1
+Etdmamin
+R1
+R2
+R3
+R4
+R5
+R6
+Z42 8C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/src/TdmaMin/TdmaMin.vhd
+Z43 FC:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/src/TdmaMin/TdmaMin.vhd
+l0
+L8
+VY>e9d85`3J6Jca]i1>T6L2
+R9
+32
+Z44 !s108 1746746999.694000
+Z45 !s90 -reportprogress|300|-work|work|C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/src/TdmaMin/TdmaMin.vhd|
+Z46 !s107 C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/src/TdmaMin/TdmaMin.vhd|
+R13
+R14
+!s100 j_68DVMD4VQ^CPDH;zQK]0
+!i10b 1
+Artl
+Z47 DEx4 work 16 tdmamininterface 0 22 FSZ?0z64Y^n7UKZB=0@171
+Z48 DEx4 work 13 tdmaminfabric 0 22 m>QieaCaNTcSoz=9kWdC83
+Z49 DEx4 work 12 tdmaminslots 0 22 hj6UMhCDbh^@l@C=Y7nK52
+R2
+R3
+R4
+R5
+Z50 DEx4 work 7 tdmamin 0 22 Y>e9d85`3J6Jca]i1>T6L2
+l27
+L19
+V_nd[;8A4jSDW>kWOOedoC3
+R9
+32
+R44
+R45
+R46
+R13
+R14
+!s100 m2?E]WJ;gcN5:WUF2VV0:3
+!i10b 1
+Etdmaminfabric
+R1
+R2
+R3
+R4
+R5
+R6
+Z51 8C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/src/TdmaMin/TdmaMinFabric.vhd
+Z52 FC:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/src/TdmaMin/TdmaMinFabric.vhd
+l0
+L8
+Vm>QieaCaNTcSoz=9kWdC83
+R9
+32
+Z53 !s108 1746746998.995000
+Z54 !s90 -reportprogress|300|-work|work|C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/src/TdmaMin/TdmaMinFabric.vhd|
+Z55 !s107 C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/src/TdmaMin/TdmaMinFabric.vhd|
+R13
+R14
+!s100 C`SP3AIdH_;VB@>c;XFc12
+!i10b 1
+Artl
+Z56 DEx4 work 12 tdmaminstage 0 22 <Z98D?LAUXS1YjLR0Q>MU0
+R2
+R3
+R4
+R5
+R48
+l27
+L20
+VZ<h]nf>`bI_I_ciKKU@?81
+R9
+32
+R53
+R54
+R55
+R13
+R14
+!s100 E?oZVCa00hcU81JJf8aba3
+!i10b 1
+Etdmamininterface
+R1
+R2
+R3
+R4
+R5
+R6
+Z57 8C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/src/TdmaMin/TdmaMinInterface.vhd
+Z58 FC:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/src/TdmaMin/TdmaMinInterface.vhd
+l0
+L10
+VFSZ?0z64Y^n7UKZB=0@171
+R9
+32
+Z59 !s108 1746746998.188000
+Z60 !s90 -reportprogress|300|-work|work|C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/src/TdmaMin/TdmaMinInterface.vhd|
+Z61 !s107 C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/src/TdmaMin/TdmaMinInterface.vhd|
+R13
+R14
+!s100 Ve9o_OgegO5BdonEijA:03
+!i10b 1
+Artl
+DEx2 ip 11 tdmaminfifo 0 22 >f6MVFi81<`AQ[FA50]1L3
+R2
+R3
+R4
+R5
+R47
+l40
+L26
+V]z<^Ti3ST5Q:L:b[6kFhR3
+R9
+32
+R59
+R60
+R61
+R13
+R14
+!s100 b85V0HTR^[3Tj<Jo3O0oa1
+!i10b 1
+Etdmaminslots
+R1
+R3
+R4
+R5
+R6
+Z62 8C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/src/TdmaMin/TdmaMinSlots.vhd
+Z63 FC:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/src/TdmaMin/TdmaMinSlots.vhd
+l0
+L5
+Vhj6UMhCDbh^@l@C=Y7nK52
+R9
+32
+Z64 !s108 1746746997.459000
+Z65 !s90 -reportprogress|300|-work|work|C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/src/TdmaMin/TdmaMinSlots.vhd|
+Z66 !s107 C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/src/TdmaMin/TdmaMinSlots.vhd|
+R13
+R14
+!s100 __o8HSi_gaSII0bO=@a?j3
+!i10b 1
+Artl
+R3
+R4
+R5
+R49
+l19
+L15
+Vmj95K4gNH<?4XoaoPBFzI3
+R9
+32
+R64
+R65
+R66
+R13
+R14
+!s100 hme=dXVXJGX^cVM0ZE_B_2
+!i10b 1
+Etdmaminstage
+R1
+R2
+R3
+R4
+R5
+R6
+Z67 8C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/src/TdmaMin/TdmaMinStage.vhd
+Z68 FC:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/src/TdmaMin/TdmaMinStage.vhd
+l0
+L8
+V<Z98D?LAUXS1YjLR0Q>MU0
+R9
+32
+Z69 !s108 1746746996.780000
+Z70 !s90 -reportprogress|300|-work|work|C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/src/TdmaMin/TdmaMinStage.vhd|
+Z71 !s107 C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/src/TdmaMin/TdmaMinStage.vhd|
+R13
+R14
+!s100 VWk?iXHi5[;:Y2mdA_gQC0
+!i10b 1
+Artl
+Z72 DEx4 work 13 tdmaminswitch 0 22 najWXOeJVnXRES0>IBiAG3
+R2
+R3
+R4
+R5
+R56
+l20
+L19
+VH:4d2Nb9WF_c]2YnjScI`3
+R9
+32
+R69
+R70
+R71
+R13
+R14
+!s100 9oS4U3bQ5gJ5d=Rh@G3iH2
+!i10b 1
+Etdmaminswitch
+R1
+R2
+R3
+R4
+R5
+R6
+Z73 8C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/src/TdmaMin/TdmaMinSwitch.vhd
+Z74 FC:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/src/TdmaMin/TdmaMinSwitch.vhd
+l0
+L8
+VnajWXOeJVnXRES0>IBiAG3
+R9
+32
+Z75 !s108 1746746995.483000
+Z76 !s90 -reportprogress|300|-work|work|C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/src/TdmaMin/TdmaMinSwitch.vhd|
+Z77 !s107 C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/src/TdmaMin/TdmaMinSwitch.vhd|
+R13
+R14
+!s100 oMz@X83QG6:_3]>h5aO2V1
+!i10b 1
+Artl
+R2
+R3
+R4
+R5
+R72
+l19
+L18
+Vi439=5CQi9VWmgD1S<]103
+R9
+32
+R75
+R76
+R77
+R13
+R14
+!s100 HMHUE;hKWI5@W]`7L@BQ51
+!i10b 1
+Ptdmamintypes
+R3
+R4
+R5
+R1
+R6
+Z78 8C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/src/TdmaMin/TdmaMinTypes.vhd
+Z79 FC:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/src/TdmaMin/TdmaMinTypes.vhd
+l0
+L5
+VV@oKhRG0DScNUkH3^aUSf3
+R9
+32
+b1
+Z80 !s108 1746747000.792000
+Z81 !s90 -reportprogress|300|-work|work|C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/src/TdmaMin/TdmaMinTypes.vhd|
+Z82 !s107 C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/src/TdmaMin/TdmaMinTypes.vhd|
+R13
+R14
+!s100 2Zm`MZo]LBFH7`SNm^XDI3
+!i10b 1
+Bbody
+R2
+R3
+R4
+R5
+l0
+L23
+VzflM>zL61HSXKF4dm@92Z1
+R9
+32
+R80
+R81
+R82
+R13
+R14
+nbody
+!s100 CWM=:jUlSL;[_m1bWncLn2
+!i10b 1
+Etestadc
+Z83 w1746747279
+R2
+R3
+R4
+R5
+R6
+Z84 8C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/test/TestAdc.vhd
+Z85 FC:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/test/TestAdc.vhd
+l0
+L8
+VahjP7c8>>d@ZikdRhmLik0
+R9
+32
+Z86 !s108 1746752582.878000
+Z87 !s90 -reportprogress|300|-work|work|C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/test/TestAdc.vhd|
+Z88 !s107 C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/test/TestAdc.vhd|
+R13
+R14
+!s100 [BDH=FV2Hh<B_eohj=ZLS1
+!i10b 1
+Asim
+R2
+R3
+R4
+R5
+Z89 DEx4 work 7 testadc 0 22 ahjP7c8>>d@ZikdRhmLik0
+l24
+L19
+VS_T:OnR[ACNZ]zam5Me9B2
+R9
+32
+R86
+R87
+R88
+R13
+R14
+!s100 ]JdE^N>`cdEEj:fIU>SYf2
+!i10b 1
+Etestaudiocontrol
+R1
+R3
+R4
+R5
+R6
+Z90 8C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/test/Audio/TestAudioControl.vhd
+Z91 FC:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/test/Audio/TestAudioControl.vhd
+l0
+L5
+VGV3^Nak3f:?NYmg4n>YLG0
+R9
+32
+Z92 !s108 1746747039.680000
+Z93 !s90 -reportprogress|300|-work|work|C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/test/Audio/TestAudioControl.vhd|
+Z94 !s107 C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/test/Audio/TestAudioControl.vhd|
+R13
+R14
+!s100 PR[iNKYUf]K9YAE]CJJ_;3
+!i10b 1
+Asim
+R18
+R3
+R4
+R5
+DEx4 work 16 testaudiocontrol 0 22 GV3^Nak3f:?NYmg4n>YLG0
+l15
+L8
+VHj>[IBi@AHZ0enB8WYFcn1
+R9
+32
+R92
+R93
+R94
+R13
+R14
+!s100 F[eWKJ6j0FZFDa_7RWUcB0
+!i10b 1
+Etestaudiofifo
+R1
+R3
+R4
+R5
+R6
+Z95 8C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/test/Audio/TestAudioFifo.vhd
+Z96 FC:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/test/Audio/TestAudioFifo.vhd
+l0
+L7
+VW3BCiIJ^GA4CoG:c549?f0
+R9
+32
+Z97 !s108 1746747037.066000
+Z98 !s90 -reportprogress|300|-work|work|C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/test/Audio/TestAudioFifo.vhd|
+Z99 !s107 C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/test/Audio/TestAudioFifo.vhd|
+R13
+R14
+!s100 o5V=LeMNN@1R=Nc1>KYRR2
+!i10b 1
+Asim
+R29
+R3
+R4
+R5
+DEx4 work 13 testaudiofifo 0 22 W3BCiIJ^GA4CoG:c549?f0
+l24
+L10
+VS5A<SY13Mb`Df4n0L[dN73
+R9
+32
+R97
+R98
+R99
+R13
+R14
+!s100 ?z3_<hKZ;9mMK6bI47Og;3
+!i10b 1
+Etestaudioout
+R1
+R3
+R4
+R5
+R6
+Z100 8C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/test/Audio/TestAudioOut.vhd
+Z101 FC:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/test/Audio/TestAudioOut.vhd
+l0
+L7
+VUVF5UZ@IMC4>lEEIXF0AX0
+R9
+32
+Z102 !s108 1746747037.734000
+Z103 !s90 -reportprogress|300|-work|work|C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/test/Audio/TestAudioOut.vhd|
+Z104 !s107 C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/test/Audio/TestAudioOut.vhd|
+R13
+R14
+!s100 ^18hBHRZ8IaUnc^@VQGSY1
+!i10b 1
+Asim
+R15
+R3
+R4
+R5
+DEx4 work 12 testaudioout 0 22 UVF5UZ@IMC4>lEEIXF0AX0
+l21
+L10
+VooTQ5@TdR[9d:PMX2mM1T2
+R9
+32
+R102
+R103
+R104
+R13
+R14
+!s100 @2DO;4iWEKV69f37zhXKj2
+!i10b 1
+Etestaudiorom
+R1
+R3
+R4
+R5
+R6
+Z105 8C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/test/Audio/TestAudioRom.vhd
+Z106 FC:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/test/Audio/TestAudioRom.vhd
+l0
+L7
+VE2eMY2<^P>>ijNm`jeD6M1
+R9
+32
+Z107 !s108 1746747038.415000
+Z108 !s90 -reportprogress|300|-work|work|C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/test/Audio/TestAudioRom.vhd|
+Z109 !s107 C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/test/Audio/TestAudioRom.vhd|
+R13
+R14
+!s100 S6UnA3F:e;7f1WbM5Ngh:3
+!i10b 1
+Asim
+R40
+R41
+R3
+R4
+R5
+DEx4 work 12 testaudiorom 0 22 E2eMY2<^P>>ijNm`jeD6M1
+l22
+L10
+V9DoH5<N;9Zzj[4J4=dc[j1
+R9
+32
+R107
+R108
+R109
+R13
+R14
+!s100 TLMKYi6_`]Xo;`dzWW6JE1
+!i10b 1
+Etestdac
+R1
+R2
+R3
+R4
+R5
+R6
+Z110 8C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/test/TestDac.vhd
+Z111 FC:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/test/TestDac.vhd
+l0
+L8
+V<O4fAggK7k6HIMjI6`?RI1
+R9
+32
+Z112 !s108 1746752583.544000
+Z113 !s90 -reportprogress|300|-work|work|C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/test/TestDac.vhd|
+Z114 !s107 C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/test/TestDac.vhd|
+R13
+R14
+!s100 F2]K=Kb?X?oQZ@LQGHLAa1
+!i10b 1
+Asim
+R2
+R3
+R4
+R5
+Z115 DEx4 work 7 testdac 0 22 <O4fAggK7k6HIMjI6`?RI1
+l21
+L16
+V4XISWWJkdf6G9Ei11Yn2c2
+R9
+32
+R112
+R113
+R114
+R13
+R14
+!s100 H06GSVA82W5bX>9G8ak682
+!i10b 1
+Etestdp
+Z116 w1746752575
+R2
+R3
+R4
+R5
+R6
+Z117 8C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/test/TestDPp.vhd
+Z118 FC:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/test/TestDPp.vhd
+l0
+L8
+VkiAcjao>g:W]aj8mBj[^<1
+R9
+32
+Z119 !s108 1746752584.287000
+Z120 !s90 -reportprogress|300|-work|work|C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/test/TestDPp.vhd|
+Z121 !s107 C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/test/TestDPp.vhd|
+R13
+R14
+!s100 Ji>Y7WfKg1jFIPX@6kBko1
+!i10b 1
+Asim
+R2
+R3
+R4
+R5
+Z122 DEx4 work 6 testdp 0 22 kiAcjao>g:W]aj8mBj[^<1
+l27
+L19
+VBWn6l[_LPh=J]PT^HI:=72
+R9
+32
+R119
+R120
+R121
+R13
+R14
+!s100 jUAE6e0f[<f;3;X<EMikH2
+!i10b 1
+Etesttdmamin
+R1
+R2
+R3
+R4
+R5
+R6
+Z123 8C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/test/TdmaMin/TestTdmaMin.vhd
+Z124 FC:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/test/TdmaMin/TestTdmaMin.vhd
+l0
+L8
+V]IC]<MQ?hh^f2YH_5PddU3
+R9
+32
+Z125 !s108 1746747007.242000
+Z126 !s90 -reportprogress|300|-work|work|C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/test/TdmaMin/TestTdmaMin.vhd|
+Z127 !s107 C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/test/TdmaMin/TestTdmaMin.vhd|
+R13
+R14
+!s100 ZjjRAYD^=Bz^m4hkj>kE[0
+!i10b 1
+Asim
+R50
+R2
+R3
+R4
+R5
+DEx4 work 11 testtdmamin 0 22 ]IC]<MQ?hh^f2YH_5PddU3
+l21
+L14
+VUZ=HkB]VM6;:`A=a@VfDm3
+R9
+32
+R125
+R126
+R127
+R13
+R14
+!s100 z@8DOMfWN?:UD9_KdM5d_3
+!i10b 1
+Etesttdmamininterface
+R1
+R2
+R3
+R4
+R5
+R6
+Z128 8C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/test/TdmaMin/TestTdmaMinInterface.vhd
+Z129 FC:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/test/TdmaMin/TestTdmaMinInterface.vhd
+l0
+L8
+VAB1EFIlWHJH0U84Ai1o^m2
+R9
+32
+Z130 !s108 1746747006.481000
+Z131 !s90 -reportprogress|300|-work|work|C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/test/TdmaMin/TestTdmaMinInterface.vhd|
+Z132 !s107 C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/test/TdmaMin/TestTdmaMinInterface.vhd|
+R13
+R14
+!s100 UDCjadBLJ?WCI1i;k3@P40
+!i10b 1
+Asim
+R47
+R2
+R3
+R4
+R5
+DEx4 work 20 testtdmamininterface 0 22 AB1EFIlWHJH0U84Ai1o^m2
+l24
+L14
+V?zzhff91Tm=zWR4ak@?IB3
+R9
+32
+R130
+R131
+R132
+R13
+R14
+!s100 W:GcOf_1SCL3CiaIOjebL0
+!i10b 1
+Etesttoplevel
+Z133 w1746751240
+R2
+R3
+R4
+R5
+R6
+Z134 8C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/test/TestTopLevel.vhd
+Z135 FC:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/test/TestTopLevel.vhd
+l0
+L8
+VNng]JfgVOh?:S;1@n[P2H0
+!s100 ;h@9cFZ4I33KLJWdTKMWT0
+R9
+32
+!i10b 1
+Z136 !s108 1746752585.034000
+Z137 !s90 -reportprogress|300|-work|work|C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/test/TestTopLevel.vhd|
+Z138 !s107 C:/Users/juane/Desktop/Lab2 Reference Design 2025/CS701/test/TestTopLevel.vhd|
+R13
+R14
+Asim
+R122
+R115
+R89
+R50
+R2
+R3
+R4
+R5
+Z139 DEx4 work 12 testtoplevel 0 22 Nng]JfgVOh?:S;1@n[P2H0
+l21
+L14
+Z140 VP5jFU>CBKdhX7?=bK58CK3
+Z141 !s100 iM>0[<>VdT2;aO6RZH@^Z2
+R9
+32
+!i10b 1
+R136
+R137
+R138
+R13
+R14
