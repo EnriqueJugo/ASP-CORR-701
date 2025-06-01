@@ -8,7 +8,7 @@
 
 set_global_assignment -name FAMILY "Cyclone V"
 set_global_assignment -name DEVICE 5CSEMA5F31C6
-set_global_assignment -name TOP_LEVEL_ENTITY CORR_ASP
+set_global_assignment -name TOP_LEVEL_ENTITY CORR_ASP_NEW
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 20.1.1
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "00:00:00  JANUARY 01, 2021"
 set_global_assignment -name LAST_QUARTUS_VERSION "18.1.0 Lite Edition"
@@ -108,6 +108,7 @@ set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
 set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+set_global_assignment -name VHDL_FILE src/CORR_ASP_NEW.vhd
 set_global_assignment -name VHDL_FILE src/CORR_ASP.vhd
 set_global_assignment -name VHDL_FILE src/AspDp.vhd
 set_global_assignment -name QIP_FILE ip/AudioClock_1/AudioClock.qip

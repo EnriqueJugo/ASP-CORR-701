@@ -1,6 +1,8 @@
 library ieee;
-use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
+use ieee.std_logic_signed.all;
+use ieee.std_logic_1164.all;
+
 library work;
 use work.TdmaMinTypes.all;
 
@@ -10,49 +12,23 @@ entity CORR_ASP is
     send  : out tdma_min_port;
     recv  : in tdma_min_port
   );
-end entity;
+end CORR_ASP;
 
-architecture beh of CORR_ASP is
-  constant CORR_WINDOW_MAX : integer := 63; -- Max size of correlation window
-  type ram_arr is array(0 to CORR_WINDOW_MAX) of signed(15 downto 0);
-  signal ram : ram_arr := (others => (others => '0'));
+architecture arch of CORR_ASP is
+  signal correlation : signed(31 downto 0) := (others => '0');
 
-  signal count : integer range 0 to CORR_WINDOW_MAX := 0;
-
-  type corr_state is (s0, s1, s2, s3, send1, send2);
-  signal state : corr_state := s0;
-
-  signal corr_pair_product : signed(31 downto 0) := (others => '0');
-  signal corr_temp         : signed(31 downto 0) := (others => '0');
-  signal multiplicand      : signed(15 downto 0) := (others => '0');
-  signal multiplier        : signed(15 downto 0) := (others => '0');
-
-  signal counter   : integer range 0 to CORR_WINDOW_MAX / 2 := 0;
-  signal corr_rdy  : std_logic                              := '0';
-  signal calculate : std_logic                              := '0';
-
-  signal corr_send_temp : signed(31 downto 0) := (others => '0');
+  type state_t is (calc, send_low);
+  signal state : state_t := calc;
 
   signal corr_window_int : integer range 0 to 63;
+
+  constant MAX_LAG : integer := 63;
 
   signal enable      : std_logic;
   signal reset       : std_logic;
   signal dest        : std_logic_vector(3 downto 0);
   signal passthrough : std_logic;
-
 begin
-
-  write_ram : process (clock)
-  begin
-    if rising_edge(clock) then
-      if (recv.data(31 downto 28) = "1000") then
-        for i in 0 to CORR_WINDOW_MAX - 2 loop
-          ram(i) <= ram(i + 1);
-        end loop;
-        ram(CORR_WINDOW_MAX - 1) <= signed(recv.data(15 downto 0));
-      end if;
-    end if;
-  end process;
 
   -- | 31..28 | 27..24 | 23..20 | 19 | 18    | 17..12      | 11            |
   -- | type   | addr   |  dest  | en | reset | corr_window | passthrough   |
@@ -70,73 +46,64 @@ begin
     end if;
   end process;
 
-  corr : process (clock, reset)
+  corr : process (clock)
+    type array_type is array(0 to MAX_LAG) of signed(15 downto 0);
+    type corr_array_t is array (0 to MAX_LAG) of signed(31 downto 0);
+    variable signal_array : array_type          := (others => (others => '0'));
+    variable sig          : signed(15 downto 0) := (others => '0');
+
+    variable corr_arr : corr_array_t := ((others => (others => '0')));
   begin
-    if (reset = '1') then
-      state          <= s0;
-      corr_rdy       <= '0';
-      corr_temp      <= (others => '0');
-      corr_send_temp <= (others => '0');
-      counter        <= 0;
-    elsif rising_edge(clock) then
-      if (recv.data(31 downto 28) = "1000") then
-        if (passthrough = '1') then
-          send.data <= x"8000" & recv.data(15 downto 0);
-        else
-          if (enable <= '1') then
-            if (count < corr_window_int) then
-              count <= count + 1;
-            end if;
+    if reset = '1' then
+      correlation <= (others => '0');
+      corr_arr     := (others => (others => '0'));
+      signal_array := (others => (others => '0'));
+      send.data <= (others   => '0');
+    else
+      if (enable = '1') then
+        if rising_edge(clock) then
+          case state is
+            when calc =>
 
-            if (count = corr_window_int) then
-              calculate <= '1';
-            end if;
+              -- PASSTHROUGH
+              if passthrough = '1' then
+                send.data <= recv.data;
+              else
 
-            case state is
-              when s0 =>
-                corr_rdy          <= '0';
-                corr_pair_product <= (others => '0');
-                send.data         <= (others => '0');
-                if calculate = '1' then
-                  corr_temp <= (others => '0');
-                  counter   <= 0;
-                  state     <= s1;
-                  calculate <= '0';
+                if recv.data(31 downto 28) = "1000" then
+
+                  -- FIFO
+                  for i in MAX_LAG downto 1 loop
+                    signal_array(i) := signal_array(i - 1);
+                  end loop;
+
+                  -- Insert new value
+                  signal_array(0) := signed(recv.data(15 downto 0));
+
+                  corr_arr := (others => (others => '0'));
+                  for i in 0 to MAX_LAG loop
+                    corr_arr(i) := corr_arr(i) + (signal_array(0) * signal_array(i));
+
+                    if i = corr_window_int then
+                      exit;
+                    end if;
+                  end loop;
+
+                  correlation <= corr_arr(corr_window_int);
+                  send.data   <= x"8000" & std_logic_vector(correlation(31 downto 16));
+                  state       <= send_low;
                 end if;
+              end if;
 
-              when s1 =>
-                multiplicand      <= ram(corr_window_int / 2 + counter);
-                multiplier        <= ram(corr_window_int / 2 - counter - 1);
-                corr_pair_product <= multiplicand * multiplier;
-                state             <= s2;
-
-                -- Buffer to complete multiplication
-              when s2 =>
-                state <= s3;
-
-              when s3 =>
-                corr_temp <= corr_temp + corr_pair_product;
-                if (counter >= (corr_window_int / 2 - 1)) then
-                  corr_rdy       <= '1';
-                  corr_send_temp <= corr_temp;
-                  state          <= send1;
-                else
-                  counter <= counter + 1;
-                  state   <= s1;
-                end if;
-
-              when send1 =>
-                send.data <= recv.data(31 downto 16) & std_logic_vector(corr_send_temp(31 downto 16));
-                state     <= send2;
-
-              when send2 =>
-                send.data <= recv.data(31 downto 16) & std_logic_vector(corr_send_temp(15 downto 0));
-                state     <= s0;
-
-            end case;
-          end if;
+            when send_low =>
+              send.data <= x"8000" & std_logic_vector(correlation(31 downto 16));
+              state     <= calc;
+          end case;
         end if;
+      else
+        send.data <= (others => '0');
       end if;
     end if;
   end process;
+
 end architecture;

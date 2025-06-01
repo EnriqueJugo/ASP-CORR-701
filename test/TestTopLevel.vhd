@@ -64,7 +64,7 @@ begin
   asp_dp : entity work.AspAvg
     generic map(
       forward    => 3,
-      MAX_WINDOW => 20
+      MAX_WINDOW => 40
     )
     port map
     (
@@ -85,22 +85,10 @@ begin
   --     recv  => recv_port(3)
   --   );
 
-  corr_inst : entity work.CorrAsp_test
-    generic map(
-      FORWARD     => 1,
-      CORR_WINDOW => 4
-    )
-    port map
-    (
-      clock => clock,
-      send  => send_port(3),
-      recv  => recv_port(3)
-    );
-
-  -- cor_asp_inst : entity work.cor_asp
+  -- corr_inst : entity work.CorrAsp_test
   --   generic map(
   --     FORWARD     => 1,
-  --     CORR_WINDOW => 8
+  --     CORR_WINDOW => 4
   --   )
   --   port map
   --   (
@@ -108,5 +96,17 @@ begin
   --     send  => send_port(3),
   --     recv  => recv_port(3)
   --   );
+
+  cor_asp_inst : entity work.cor_asp
+    generic map(
+      FORWARD     => 1,
+      CORR_WINDOW => 128
+    )
+    port map
+    (
+      clock => clock,
+      send  => send_port(3),
+      recv  => recv_port(3)
+    );
 
 end architecture;
