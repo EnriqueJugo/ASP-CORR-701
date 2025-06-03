@@ -21,7 +21,7 @@ architecture arch of CORR_ASP is
 
   constant MAX_LAG : integer := 1024;
 
-  signal corr_window_int : integer range 0 to MAX_LAG := 256;
+  signal corr_window_int : integer range 0 to MAX_LAG := 1024;
 
   -- Internal control signals
   signal enable      : std_logic                    := '1';
@@ -35,6 +35,8 @@ architecture arch of CORR_ASP is
   signal wr_index     : integer range 0 to MAX_LAG := 0;
 begin
 
+  send.addr <= std_logic_vector(to_unsigned(1, tdma_min_addr'length));
+
   -- | 31..28 | 27..24 | 23..20 | 19 | 18    | 17          | 16..7         |
   -- | type   | addr   |  dest  | en | reset | passthrough | CORRELATION   |
   config : process (clock)
@@ -46,7 +48,6 @@ begin
         dest            <= recv.data(23 downto 20);
         passthrough     <= recv.data(17);
         corr_window_int <= to_integer(unsigned(recv.data(16 downto 7)));
-        send.addr       <= std_logic_vector(resize(unsigned(dest), tdma_min_addr'length));
       end if;
     end if;
   end process;
@@ -54,7 +55,7 @@ begin
   corr : process (clock)
     variable sig         : signed(15 downto 0);
     variable delayed_sig : signed(15 downto 0);
-    variable product     : signed(31 downto 0);
+    variable product     : signed(31 downto 0) := (others => '0');
     variable rd_index    : integer;
   begin
     if rising_edge(clock) then
@@ -64,24 +65,28 @@ begin
         send.data    <= (others => '0');
         wr_index     <= 0;
       elsif enable = '1' then
-        if passthrough = '1' then
-          send.data <= recv.data;
-        elsif recv.data(31 downto 28) = "1000" then
-          sig := signed(recv.data(15 downto 0));
+        case state is
+          when calc =>
+            if passthrough = '1' then
+              send.data <= recv.data;
+            elsif recv.data(31 downto 28) = "1000" then
+              sig := signed(recv.data(15 downto 0));
 
-          -- Compute read index with wrap-around
-          rd_index    := (wr_index - corr_window_int + (corr_window_int + 1)) mod (corr_window_int + 1);
-          delayed_sig := signal_array(rd_index);
+              rd_index    := (wr_index - corr_window_int + (corr_window_int + 1)) mod (corr_window_int + 1);
+              delayed_sig := signal_array(rd_index);
 
-          -- Store new sample and update write pointer
-          signal_array(wr_index) <= sig;
-          wr_index               <= (wr_index + 1) mod (corr_window_int + 1);
+              signal_array(wr_index) <= sig;
+              wr_index               <= (wr_index + 1) mod (corr_window_int + 1);
 
-          -- Compute product and store
-          product := sig * delayed_sig;
-          correlation <= product;
-          send.data   <= std_logic_vector(product);
-        end if;
+              product := sig * delayed_sig;
+              correlation <= product;
+              send.data   <= x"8000" & std_logic_vector(correlation(31 downto 16));
+              state       <= send_low;
+            end if;
+          when send_low =>
+            send.data <= x"8000" & std_logic_vector(correlation(15 downto 0));
+            state     <= calc;
+        end case;
       else
         send.data <= (others => '0');
       end if;
