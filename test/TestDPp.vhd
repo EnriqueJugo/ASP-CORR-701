@@ -24,7 +24,7 @@ architecture sim of AspAvg is
   signal data_buf : data_array := (others => (others => '0'));
 
   signal idx : integer range 0 to MAX_WINDOW - 1 := 0;
-  signal avg : signed(15 downto 0);
+  signal avg : signed(15 downto 0)               := (others => '0');
 
   -- dynamic config registers
   signal window_len_reg : integer range 1 to MAX_WINDOW := 1;
@@ -73,6 +73,12 @@ begin
           end if;
         end loop;
         raw_avg := sum / MAX_WINDOW;
+
+        -- if (raw_avg > 4096) then
+        --   raw_avg := to_signed(4096, raw_avg'length);
+        -- elsif (raw_avg <- 4096) then
+        --   raw_avg := to_signed(-4096, raw_avg'length);
+        -- end if;
 
         avg <= resize(raw_avg, avg'length);
 

@@ -1,0 +1,71 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.all;
+use IEEE.NUMERIC_STD.all;
+
+library work;
+
+library work;
+use work.TdmaMinTypes.all;
+
+entity TestBench is
+end entity TestBench;
+
+architecture rtl of TestBench is
+  signal clock       : std_logic := '0';
+  signal network_out : tdma_min_port;
+  signal network_in  : tdma_min_port;
+  signal i           : natural := 0;
+  signal current_val : std_logic_vector(11 downto 0);
+
+  type signal_array is array (0 to 1599) of std_logic_vector(11 downto 0);
+
+  constant test_signal : signal_array := (
+  x"E4B", x"F22", x"F51", x"F13", x"F3A", x"F04", x"E3B", x"D11", x"C91", x"BBB", x"A8D", x"9E6", x"8E8", x"777", x"71F", x"66E", x"66E", x"625", x"563", x"567", x"580", x"5D6", x"590", x"4DB", x"5EE", x"5FE", x"5C8", x"5C6", x"5FD", x"5C9", x"5F8", x"616", x"682", x"61E", x"687", x"6A2", x"6C9", x"6C5", x"6E4", x"7A1", x"748", x"795", x"7B0", x"7B2", x"7EC", x"7D1", x"8D9", x"8C6", x"8CC", x"8C7", x"91B", x"9B5", x"9D2", x"97C", x"9B6", x"AA6", x"A3A", x"A42", x"A35", x"998", x"A74", x"A05", x"A5C", x"A21", x"A08", x"A0F", x"9E6", x"9B4", x"98B", x"9B3", x"8EB", x"8A0", x"81D", x"823", x"776", x"651", x"600", x"520", x"405", x"359", x"2DA", x"249", x"1DA", x"1ED", x"21B", x"1B5", x"2C2", x"3CE", x"49A", x"58F", x"62F", x"733", x"883", x"92E", x"9BB", x"ADC", x"B2D", x"B99", x"BCB", x"B87", x"C30", x"B52", x"C08", x"C0A", x"BBA", x"BF9", x"BC2", x"BAF", x"BFF", x"B98", x"BB6", x"B7B", x"BBC", x"B02", x"B0B", x"AA2", x"AC8", x"B07", x"A17", x"9DB", x"9FA", x"A23", x"9EC", x"921", x"934", x"927", x"92B", x"857", x"897", x"876", x"864", x"825", x"76B", x"7AA", x"76B", x"789", x"737", x"6D6", x"763", x"655", x"793", x"724", x"709", x"754", x"722", x"771", x"77A", x"7F9", x"73D", x"794", x"7AF", x"8B1", x"90A", x"9DC", x"9AB", x"AEC", x"B29", x"C54", x"D9E", x"E40", x"E8D", x"F3A", x"F39", x"F8A", x"FBD", x"EFE", x"EC7", x"E50", x"CB0", x"C08", x"A72", x"9A8", x"865", x"882", x"764", x"68B", x"63B", x"5C7", x"5BB", x"58A", x"5BB", x"520", x"58A", x"4FE", x"61A", x"53F", x"5AB", x"579", x"590", x"581", x"613", x"5DA", x"575", x"64C", x"5C7", x"67F", x"6CB", x"674", x"75C", x"721", x"7BA", x"7A7", x"775", x"805", x"810", x"83E", x"835", x"7E0", x"871", x"922", x"956", x"973", x"936", x"99D", x"9A1", x"A0A", x"A41", x"A36", x"9E0", x"A05", x"A32", x"A6F", x"A28", x"98C", x"9D9", x"9EA", x"9F3", x"98D", x"9B5", x"988", x"959", x"94A", x"8E9", x"84A", x"719", x"6D2", x"5C7", x"511", x"478", x"3D5", x"2B8", x"27F", x"20C", x"1C3", x"24D", x"2D1", x"2F4", x"334", x"485", x"53A", x"6B5", x"7A3", x"8A5", x"93C", x"A07", x"A92", x"B6C", x"B6D", x"BBC", x"BBB", x"BD8", x"C3F", x"BEB", x"BDB", x"BE6", x"BE6", x"BD1", x"B90", x"C1E", x"BCE", x"BA9", x"BC7", x"B50", x"B12", x"AB6", x"AD1", x"AE9", x"A59", x"A4D", x"9DE", x"9F1", x"9CC", x"99E", x"985", x"94B", x"90C", x"958", x"896", x"907", x"851", x"7AF", x"805", x"78C", x"75B", x"7ED", x"765", x"69E", x"74F", x"73E", x"748", x"6F1", x"6BC", x"74B", x"6F0", x"7C2", x"753", x"764", x"7AB", x"7D2", x"7B0", x"847", x"80E", x"8AB", x"939", x"9AC", x"AC6", x"BD9", x"C77", x"D69", x"DD1", x"EDF", x"F71", x"F46", x"F4B", x"F57", x"EBD", x"E3E", x"CF0", x"C9A", x"B5F", x"B37", x"975", x"96E", x"7DD", x"729", x"694", x"693", x"5CE", x"5DC", x"5A9", x"53D", x"5DE", x"5C9", x"51C", x"5AB", x"580", x"5BD", x"590", x"5B8", x"5BC", x"54E", x"5AE", x"61D", x"656", x"638", x"6A0", x"692", x"6CD", x"6DB", x"763", x"789", x"7CA", x"7A4", x"7A8", x"7BC", x"854", x"7CE", x"8D3", x"87D", x"89E", x"908", x"96B", x"97B", x"9FE", x"A2A", x"A31", x"A05", x"A19", x"A61", x"9DC", x"A15", x"A3A", x"A21", x"A2A", x"A4E", x"9EE", x"A60", x"954", x"96A", x"97A", x"931", x"8F3", x"80A", x"7FE", x"77D", x"67E", x"579", x"506", x"409", x"385", x"2F6", x"283", x"1D0", x"1E2", x"222", x"26E", x"352", x"3E3", x"48F", x"588", x"691", x"785", x"830", x"8E8", x"990", x"A7F", x"A9C", x"B44", x"BC5", x"C04", x"BAB", x"B40", x"BB2", x"BC6", x"BAB", x"B86", x"B9D", x"BEF", x"B82", x"BEF", x"BDD", x"B19", x"B61", x"B57", x"B56", x"AE9", x"ABD", x"A52", x"A3F", x"9FC", x"9E7", x"9AE", x"919", x"950", x"895", x"90B", x"940", x"852", x"898", x"834", x"7B6", x"7DD", x"816", x"730", x"766", x"747", x"75A", x"68B", x"7FE", x"784", x"705", x"755", x"764", x"6D2", x"778", x"75C", x"75A", x"803", x"795", x"795", x"7CA", x"842", x"859", x"958", x"9C2", x"B20", x"B76", x"C73", x"D72", x"E41", x"E7F", x"F1E", x"FFF", x"FE6", x"FB3", x"EC9", x"E6A", x"D8B", x"D1C", x"C5B", x"AA2", x"9DA", x"8DE", x"7D3", x"7C1", x"719", x"5F6", x"568", x"60B", x"575", x"57B", x"58C", x"57F", x"5B8", x"5E2", x"584", x"57C", x"618", x"5A2", x"65E", x"5BF", x"613", x"5F8", x"5F4", x"649", x"69D", x"71B", x"6D9", x"6FC", x"7F2", x"77A", x"771", x"7B3", x"7BA", x"7FE", x"7EF", x"8AB", x"86C", x"8BB", x"902", x"984", x"9DA", x"97E", x"9F8", x"A16", x"9FD", x"A22", x"A41", x"A34", x"A4A", x"A88", x"A42", x"A0D", x"9A2", x"A39", x"A78", x"9A4", x"964", x"A79", x"979", x"93C", x"96F", x"89F", x"7CC", x"726", x"6BD", x"59F", x"533", x"453", x"349", x"237", x"26D", x"227", x"228", x"1CD", x"269", x"323", x"34E", x"528", x"5A8", x"716", x"7C0", x"863", x"98F", x"9FA", x"A86", x"B8D", x"B8A", x"BE5", x"BD2", x"BAA", x"BC4", x"C4C", x"BFA", x"B7B", x"B69", x"B83", x"B42", x"B62", x"BD0", x"B8D", x"B46", x"B94", x"B7F", x"B12", x"AC9", x"AA8", x"A4F", x"A6D", x"A27", x"9FA", x"9A3", x"995", x"934", x"9E2", x"965", x"920", x"901", x"87A", x"8A6", x"883", x"808", x"7C1", x"7F8", x"73C", x"6CC", x"74A", x"6BD", x"6C1", x"76A", x"781", x"741", x"771", x"70B", x"7BA", x"785", x"7B8", x"75D", x"772", x"823", x"7CA", x"8A4", x"83C", x"901", x"A17", x"AFE", x"BDC", x"C50", x"D5E", x"D73", x"E9B", x"F43", x"FB7", x"F6D", x"F7B", x"F1F", x"EB1", x"D8C", x"CB4", x"C00", x"A50", x"9EC", x"8CE", x"856", x"746", x"66D", x"60B", x"5C0", x"5A9", x"51F", x"5D5", x"5D2", x"582", x"54A", x"5E1", x"539", x"592", x"59C", x"574", x"5B7", x"5DD", x"603", x"611", x"62C", x"689", x"679", x"69B", x"6C4", x"6D1", x"6FF", x"72A", x"7C7", x"7E1", x"7BC", x"817", x"860", x"8A2", x"816", x"8A1", x"8F1", x"930", x"996", x"99D", x"9F5", x"A17", x"A1C", x"A93", x"A60", x"A09", x"AB6", x"A21", x"9D2", x"9DB", x"A6F", x"A6B", x"9E2", x"A00", x"A62", x"98C", x"9CD", x"90B", x"92D", x"8A2", x"868", x"753", x"679", x"591", x"54A", x"489", x"2E8", x"2CD", x"29B", x"209", x"22C", x"275", x"236", x"373", x"402", x"49C", x"5A2", x"637", x"79B", x"8A7", x"8DF", x"A57", x"AB7", x"B4C", x"BA6", x"BFD", x"CB5", x"BFF", x"BBD", x"BF5", x"B88", x"C40", x"BDD", x"B8A", x"BCE", x"AD9", x"BCE", x"B2B", x"B9E", x"B3B", x"B63", x"B37", x"AD9", x"AAC", x"AAD", x"A26", x"A51", x"992", x"9E7", x"9B1", x"91B", x"95D", x"8DC", x"958", x"8C6", x"8BB", x"862", x"842", x"7E5", x"7C6", x"79C", x"759", x"78E", x"742", x"6E5", x"676", x"6E4", x"6E4", x"74C", x"767", x"705", x"764", x"773", x"76F", x"7D1", x"7D7", x"7EC", x"7F6", x"82C", x"928", x"944", x"A1E", x"ACB", x"BA3", x"C6E", x"CAC", x"DEA", x"ECC", x"EED", x"F33", x"F47", x"F0C", x"EF8", x"E9F", x"D98", x"CA4", x"BBD", x"A69", x"A00", x"8F2", x"820", x"72C", x"788", x"626", x"650", x"5BA", x"599", x"50F", x"579", x"5E8", x"598", x"566", x"593", x"51C", x"5A9", x"5EF", x"5D0", x"61D", x"5DE", x"5D1", x"61C", x"64C", x"6AD", x"658", x"6D1", x"738", x"6F1", x"71B", x"7B5", x"7C9", x"7C0", x"832", x"7F1", x"871", x"7F8", x"877", x"91D", x"8FE", x"9C5", x"9BE", x"A10", x"A07", x"A6E", x"9E2", x"9D2", x"A2C", x"A22", x"A8D", x"A10", x"A30", x"993", x"9C6", x"A06", x"9D2", x"A0E", x"9C3", x"9F3", x"90B", x"90E", x"863", x"82C", x"76B", x"67D", x"605", x"51C", x"3FD", x"356", x"244", x"233", x"180", x"288", x"211", x"296", x"302", x"3E4", x"493", x"599", x"65E", x"7F0", x"85B", x"92C", x"9A1", x"AA0", x"B02", x"C07", x"BE6", x"BF5", x"BDD", x"C2F", x"C33", x"BA9", x"C3C", x"B9A", x"BD4", x"BC4", x"BE1", x"B86", x"BC9", x"B4E", x"B2D", x"AF8", x"B55", x"AFD", x"AB1", x"A7E", x"A07", x"9C4", x"977", x"996", x"992", x"944", x"936", x"968", x"91A", x"91E", x"8B2", x"847", x"8DF", x"810", x"7EC", x"7DA", x"770", x"76B", x"724", x"730", x"6AD", x"73C", x"74B", x"73C", x"75C", x"796", x"785", x"6FB", x"76F", x"7A2", x"7BE", x"796", x"7A6", x"86F", x"8B7", x"97F", x"9A6", x"9F7", x"BA9", x"C40", x"D1A", x"DCE", x"E99", x"F33", x"F46", x"F9B", x"F44", x"F26", x"E75", x"D92", x"D26", x"C1E", x"A84", x"9C2", x"8C3", x"7CB", x"783", x"682", x"5F4", x"5DF", x"605", x"572", x"57B", x"5B5", x"59A", x"5E5", x"597", x"532", x"567", x"516", x"530", x"56A", x"5B0", x"5DD", x"5E4", x"5FB", x"688", x"67A", x"718", x"672", x"718", x"719", x"792", x"7A4", x"7F1", x"7F4", x"80F", x"818", x"820", x"8BD", x"8C4", x"88B", x"95A", x"92A", x"98B", x"99D", x"A15", x"9EB", x"A07", x"A84", x"9DF", x"A30", x"A26", x"A5B", x"9A5", x"A21", x"9F1", x"9B0", x"9BB", x"9D3", x"97B", x"9D2", x"8C4", x"8FF", x"8E5", x"879", x"789", x"690", x"575", x"52D", x"409", x"2FA", x"325", x"281", x"210", x"1D5", x"1D0", x"228", x"2F2", x"374", x"499", x"59B", x"648", x"777", x"868", x"94D", x"9B0", x"A48", x"B0F", x"B62", x"B9D", x"BD5", x"BEB", x"BEF", x"BD1", x"C22", x"BBB", x"B83", x"BCF", x"B8F", x"C04", x"C19", x"B40", x"B72", x"AD3", x"AE2", x"B38", x"A6D", x"AD7", x"A92", x"A45", x"9F5", x"9AE", x"98A", x"934", x"91B", x"968", x"8F9", x"912", x"84F", x"8A1", x"848", x"85F", x"830", x"7F6", x"748", x"766", x"780", x"712", x"740", x"6B5", x"729", x"6BC", x"7BC", x"6FA", x"7B5", x"771", x"7C2", x"70A", x"7A0", x"7AC", x"7E2", x"80C", x"84B", x"8DE", x"913", x"9DD", x"B65", x"B19", x"C02", x"CF6", x"DE9", x"EC9", x"F44", x"F79", x"FAB", x"F1E", x"F3A", x"E2F", x"E17", x"CFF", x"BD8", x"B1E", x"9A4", x"8F0", x"859", x"786", x"69F", x"63B", x"5D3", x"5FE", x"5FD", x"5B6", x"5A9", x"51F", x"591", x"569", x"558", x"589", x"5E5", x"5DE", x"532", x"5CA", x"5C8", x"583", x"5E7", x"671", x"666", x"6C9", x"6EE", x"6F8", x"7BA", x"745", x"7E0", x"7C1", x"7D0", x"7B9", x"7CA", x"7FF", x"927", x"8A8", x"907", x"979", x"975", x"98E", x"965", x"A86", x"A25", x"A00", x"A13", x"9A9", x"A26", x"9E5", x"99A", x"A16", x"A2C", x"A37", x"9F5", x"9D7", x"9B7", x"9DB", x"998", x"914", x"895", x"87D", x"7B0", x"733", x"68F", x"58D", x"52A", x"457", x"373", x"27F", x"1E5", x"267", x"24E", x"288", x"2A4", x"32A", x"33F", x"49B", x"545", x"627", x"6F8", x"873", x"96E", x"A26", x"ABC", x"AEF", x"BB9", x"BC9", x"C46", x"C9E", x"BCF", x"BAD", x"BBF", x"C02", x"B36", x"C32", x"BB2", x"B99", x"BBA", x"B9A", x"B40", x"B9D", x"B44", x"B36", x"B28", x"AC2", x"A77", x"9F4", x"A13", x"957", x"974", x"978", x"9D7", x"8DB", x"935", x"869", x"898", x"93D", x"869", x"85C", x"7DF", x"7E9", x"7AC", x"7D3", x"78A", x"70F", x"6BA", x"6F7", x"737", x"767", x"71B", x"72A", x"73C", x"722", x"743", x"6C4", x"789", x"750", x"784", x"7E3", x"82A", x"91F", x"96C", x"9B2", x"A79", x"B77", x"CBD", x"D47", x"DE6", x"E9E", x"F0B", x"F5E", x"FBF", x"F56", x"F3C", x"E66", x"DDD", x"C7F", x"BD6", x"AFA", x"A01", x"880", x"84C", x"77C", x"717", x"617", x"66E", x"60B", x"57D", x"5E0", x"573", x"54D", x"5C3", x"5B2", x"57C", x"589", x"59D", x"5EC", x"5C3", x"5E9", x"5FD", x"5E1", x"5FC", x"6A6", x"668", x"703", x"68A", x"6B4", x"7AB", x"806", x"7D1", x"7E3", x"7E1", x"882", x"821", x"86C", x"8B9", x"8E4", x"90E", x"91E", x"931", x"948", x"986", x"9B0", x"9E7", x"A5C", x"A29", x"A2B", x"9EB", x"A6E", x"9DF", x"A2F", x"A72", x"A8C", x"9EF", x"A2C", x"A10", x"9A2", x"972", x"943", x"8B4", x"8B9", x"7F0", x"716", x"680", x"5E2", x"4B4", x"3FC", x"35F", x"2F9", x"214", x"1D5", x"23F", x"199", x"202", x"316", x"3C4", x"4FA", x"560", x"690", x"768", x"895", x"995", x"A08", x"B02", x"B0F", x"B61", x"BF8", x"BF4", x"C50", x"BE1", x"BFB", x"C07", x"BAD", x"C00", x"BA9", x"BAD", x"B82", x"BD8", x"B46", x"BA4", x"B57", x"B46", x"B3D", x"AD9", x"A8E", x"A60", x"A0A", x"9C5", x"9BA", x"90A", x"962", x"95C", x"979", x"8F9", x"8DD", x"8F4", x"8BE", x"85F", x"827", x"811", x"7A9", x"7BD", x"756", x"721", x"79B", x"70C", x"739", x"74A", x"6D9", x"752", x"6FA", x"6FD", x"77A", x"721", x"779", x"71C", x"7B3", x"7CD", x"7F9", x"889", x"85C", x"9BB", x"A5C", x"ADC", x"B23", x"C82", x"D07", x"E07", x"E83", x"EC8", x"F9C", x"F5D", x"F5B", x"F08", x"E66", x"D98", x"D26", x"BA8", x"A52", x"990", x"96D", x"830", x"6F0", x"644", x"63B", x"618", x"576", x"58B", x"55E", x"52C", x"57D", x"5BF", x"5B5", x"580", x"5CD", x"624", x"5AD", x"59E", x"611", x"573", x"5B7", x"5BD", x"5B3", x"5D4", x"6E1", x"6F7", x"719", x"76B", x"752", x"7D9", x"84D", x"827", x"863", x"851", x"82F", x"82E", x"8B8", x"8C1", x"937", x"8F7", x"975", x"A00", x"9EF", x"A39", x"A12", x"9F3", x"A86", x"A01", x"A4F", x"9DB", x"A02", x"A0C", x"9CF", x"9EC", x"9C4", x"A27", x"9E8", x"9C6", x"978", x"8FF", x"8F5", x"7B5", x"72F", x"65F", x"601", x"52F", x"435", x"3C6", x"28D", x"195", x"22A", x"1B9", x"227", x"291", x"302", x"3BE", x"472", x"592", x"6A1", x"72A", x"847", x"97C", x"A06", x"A89", x"B83", x"BA1", x"BB0", x"BCF", x"BC5", x"C05", x"C17", x"B9A", x"BF5", x"BA7", x"B4B", x"B2E", x"BA8", x"B7A", x"B90", x"BA0", x"B0C", x"B4A", x"B13", x"AB3", x"A89", x"A49", x"A77", x"9A5", x"A3A", x"9F3", x"913", x"95A", x"96D", x"99B", x"909", x"8C0", x"891", x"8D2", x"841", x"802", x"7A5", x"790", x"6E9", x"775", x"6EA", x"6E1", x"75D", x"71F", x"707", x"76F", x"744", x"793", x"77A", x"7A7", x"792", x"757", x"758", x"7D6", x"82E", x"85A", x"91D", x"988", x"A3D", x"A95", x"B5F", x"C2D", x"D43", x"DB8"
+  );
+
+  signal send_port : tdma_min_ports(0 to 2 - 1);
+  signal recv_port : tdma_min_ports(0 to 2 - 1);
+begin
+
+  clock       <= not clock after 10 ns;
+  current_val <= test_signal(i);
+
+  process (clock)
+  begin
+    if rising_edge(clock) then
+      i <= i + 1;
+    end if;
+
+  end process;
+  tdma_min : entity work.TdmaMin
+    generic map(
+      ports => 2
+    )
+    port map
+    (
+      clock => clock,
+      sends => send_port,
+      recvs => recv_port
+    );
+
+  asp_adc : entity work.TestAdc
+    generic map(
+      forward => 1
+    )
+    port map
+    (
+      clock => clock,
+      send  => send_port(0),
+      recv  => recv_port(0)
+    );
+
+  asp : entity work.auto_correlator_asp
+    port map
+    (
+      clock => clock,
+      -- reset => '0',
+      network_in  => recv_port(1),
+      network_out => send_port(1)
+    );
+
+end architecture;

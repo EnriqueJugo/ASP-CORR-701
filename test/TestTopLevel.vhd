@@ -64,7 +64,7 @@ begin
   asp_dp : entity work.AspAvg
     generic map(
       forward    => 3,
-      MAX_WINDOW => 40
+      MAX_WINDOW => 100
     )
     port map
     (
@@ -97,11 +97,7 @@ begin
   --     recv  => recv_port(3)
   --   );
 
-  cor_asp_inst : entity work.cor_asp
-    generic map(
-      FORWARD     => 1,
-      CORR_WINDOW => 128
-    )
+  cor_asp_inst : entity work.CORR_ASP
     port map
     (
       clock => clock,
