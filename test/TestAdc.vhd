@@ -31,7 +31,7 @@ begin
     variable word : integer;
     variable data : std_logic_vector(31 downto 0);
   begin
-    file_open(audio, "tones\power_signal_8bit.wav", read_mode);
+    file_open(audio, "tones\power_signal_switching.wav", read_mode);
 
     -- Skip wave header
     for i in 1 to 11 loop
