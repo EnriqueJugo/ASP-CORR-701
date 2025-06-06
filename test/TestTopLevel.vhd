@@ -53,14 +53,6 @@ begin
       recv  => recv_port(1)
     );
 
-  -- asp_dac : entity work.TestDac
-  --   port map
-  --   (
-  --     clock => clock,
-  --     send  => send_port(1),
-  --     recv  => recv_port(1)
-  --   );
-
   asp_dp : entity work.AspAvg
     generic map(
       forward    => 3,
@@ -72,30 +64,6 @@ begin
       send  => send_port(2),
       recv  => recv_port(2)
     );
-
-  -- asp_corr : entity work.CorrAsp_test
-  --   generic map(
-  --     FORWARD     => 1,
-  --     CORR_WINDOW => 5
-  --   )
-  --   port map
-  --   (
-  --     clock => clock,
-  --     send  => send_port(3),
-  --     recv  => recv_port(3)
-  --   );
-
-  -- corr_inst : entity work.CorrAsp_test
-  --   generic map(
-  --     FORWARD     => 1,
-  --     CORR_WINDOW => 4
-  --   )
-  --   port map
-  --   (
-  --     clock => clock,
-  --     send  => send_port(3),
-  --     recv  => recv_port(3)
-  --   );
 
   cor_asp_inst : entity work.CORR_ASP
     port map

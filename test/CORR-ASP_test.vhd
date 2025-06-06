@@ -1,111 +1,96 @@
 library ieee;
-use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
+use ieee.std_logic_1164.all;
+
 library work;
 use work.TdmaMinTypes.all;
 
-entity CorrAsp_test is
-  generic (
-    FORWARD     : natural;
-    CORR_WINDOW : integer := 10
-  );
+entity CORR_ASP is
   port (
     clock : in std_logic;
     send  : out tdma_min_port;
     recv  : in tdma_min_port
   );
-end entity;
+end CORR_ASP;
 
-architecture beh of CorrAsp_test is
-  type ram_arr is array(0 to CORR_WINDOW - 1) of signed(15 downto 0);
-  signal ram : ram_arr := (others => (others => '0'));
+architecture arch of CORR_ASP is
+  signal correlation : signed(31 downto 0) := (others => '0');
 
-  signal count : integer range 0 to CORR_WINDOW := 0;
+  type state_t is (calc, send_low);
+  signal state : state_t := calc;
 
-  type corr_state is (s0, s1, s2, s3, send1, send2);
-  signal state : corr_state := s0;
+  constant MAX_LAG : integer := 1024;
 
-  signal corr_pair_product : signed(31 downto 0) := (others => '0');
-  signal corr_temp         : signed(31 downto 0) := (others => '0');
-  signal multiplicand      : signed(15 downto 0) := (others => '0');
-  signal multiplier        : signed(15 downto 0) := (others => '0');
+  signal corr_window_int : integer range 0 to MAX_LAG := 1024;
 
-  signal counter   : integer range 0 to CORR_WINDOW / 2 := 0;
-  signal corr_rdy  : std_logic                          := '0';
-  signal calculate : std_logic                          := '0';
+  -- Internal control signals
+  signal enable      : std_logic                    := '1';
+  signal reset       : std_logic                    := '0';
+  signal dest        : std_logic_vector(3 downto 0) := (others => '0');
+  signal passthrough : std_logic                    := '0';
 
-  signal corr_send_temp : signed(31 downto 0) := (others => '0');
+  -- Circular buffer
+  type array_type is array(0 to MAX_LAG) of signed(15 downto 0);
+  signal signal_array : array_type                 := (others => (others => '0'));
+  signal wr_index     : integer range 0 to MAX_LAG := 0;
 begin
-  send.addr <= std_logic_vector(to_unsigned(FORWARD, tdma_min_addr'length));
 
-  write_ram : process (clock)
+  send.addr <= std_logic_vector(to_unsigned(1, tdma_min_addr'length));
+
+  -- | 31..28 | 27..24 | 23..20 | 19 | 18    | 17          | 16..7         |
+  -- | type   | addr   |  dest  | en | reset | passthrough | CORRELATION   |
+  config : process (clock)
   begin
     if rising_edge(clock) then
-      if (recv.data(31 downto 28) = "1000") then
-        for i in 0 to CORR_WINDOW - 2 loop
-          ram(i) <= ram(i + 1);
-        end loop;
-        ram(CORR_WINDOW - 1) <= signed(recv.data(15 downto 0));
+      if recv.data(31 downto 28) = "1101" then
+        enable          <= recv.data(19);
+        reset           <= recv.data(18);
+        dest            <= recv.data(23 downto 20);
+        passthrough     <= recv.data(17);
+        corr_window_int <= to_integer(unsigned(recv.data(16 downto 7)));
       end if;
     end if;
   end process;
 
   corr : process (clock)
+    variable sig         : signed(15 downto 0);
+    variable delayed_sig : signed(15 downto 0);
+    variable product     : signed(31 downto 0) := (others => '0');
+    variable rd_index    : integer;
   begin
     if rising_edge(clock) then
-      if (recv.data(31 downto 28) = "1000") then
-        if (count < CORR_WINDOW) then
-          count <= count + 1;
-        end if;
+      if reset = '1' then
+        correlation  <= (others => '0');
+        signal_array <= (others => (others => '0'));
+        send.data    <= (others => '0');
+        wr_index     <= 0;
+      elsif enable = '1' then
+        case state is
+          when calc =>
+            if passthrough = '1' then
+              send.data <= recv.data;
+            elsif recv.data(31 downto 28) = "1000" then
+              sig := signed(recv.data(15 downto 0));
 
-        if (count = CORR_WINDOW) then
-          count     <= 0;
-          calculate <= '1';
-        end if;
+              rd_index    := (wr_index - corr_window_int + (corr_window_int + 1)) mod (corr_window_int + 1);
+              delayed_sig := signal_array(rd_index);
+
+              signal_array(wr_index) <= sig;
+              wr_index               <= (wr_index + 1) mod (corr_window_int + 1);
+
+              product := sig * delayed_sig;
+              correlation <= product;
+              send.data   <= x"8000" & std_logic_vector(correlation(31 downto 16));
+              state       <= send_low;
+            end if;
+          when send_low =>
+            send.data <= x"8000" & std_logic_vector(correlation(15 downto 0));
+            state     <= calc;
+        end case;
+      else
+        send.data <= (others => '0');
       end if;
-
-      case state is
-        when s0 =>
-          corr_rdy          <= '0';
-          corr_pair_product <= (others => '0');
-          send.data         <= (others => '0');
-          if calculate = '1' then
-            corr_temp <= (others => '0');
-            counter   <= 0;
-            state     <= s1;
-            calculate <= '0';
-          end if;
-
-        when s1 =>
-          multiplicand      <= ram(CORR_WINDOW / 2 + counter);
-          multiplier        <= ram(CORR_WINDOW / 2 - counter - 1);
-          corr_pair_product <= multiplicand * multiplier;
-          state             <= s2;
-
-          -- Buffer to complete multiplication
-        when s2 =>
-          state <= s3;
-
-        when s3 =>
-          corr_temp <= corr_temp + corr_pair_product;
-          if (counter >= (CORR_WINDOW / 2 - 1)) then
-            corr_rdy       <= '1';
-            corr_send_temp <= corr_temp;
-            state          <= send1;
-          else
-            counter <= counter + 1;
-            state   <= s1;
-          end if;
-
-        when send1 =>
-          send.data <= recv.data(31 downto 16) & std_logic_vector(corr_send_temp(31 downto 16));
-          state     <= send2;
-
-        when send2 =>
-          send.data <= recv.data(31 downto 16) & std_logic_vector(corr_send_temp(15 downto 0));
-          state     <= s0;
-
-      end case;
     end if;
   end process;
+
 end architecture;
